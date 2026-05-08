@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Dashboard Ejecutivo B2B SaaS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Decisiones técnicas
 
-## Available Scripts
+El proyecto fue desarrollado con React + TypeScript, siguiendo el stack solicitado. La decisión principal fue organizar la solución de forma simple y clara, separando la definición de tipos, las funciones de cálculo y la interfaz principal. Esto permitió trabajar de mejor manera con el archivo `metrics.json`, que fue entregado como fuente de datos base para el examen.
 
-In the project directory, you can run:
+El archivo `metrics.json` se ubicó en la carpeta `public` para poder cargarlo correctamente desde la aplicación, tanto en desarrollo local como en la versión publicada. La app consume ese único archivo y permite navegar entre los conjuntos de datos A, B, C y D, evitando que la solución funcione solamente con el primer dataset.
 
-### `npm start`
+La interfaz fue pensada como un reporte ejecutivo, no como una tabla completa de métricas. El objetivo fue que el jefe de ventas pueda abrir la página y entender rápidamente dónde poner foco. Por eso se priorizaron tarjetas KPI, comparación contra el período anterior, embudo comercial, gráficos de tendencia, tiempo de respuesta, soporte y un bloque de prioridades.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+También se consideró el campo `direction` incluido en la metadata, ya que algunas métricas son mejores cuando suben y otras cuando bajan. Con eso la aplicación puede indicar si un resultado mejora, empeora o se mantiene estable según el comportamiento esperado de cada métrica. Además, se manejaron valores `null` para evitar errores en métricas que no siempre tienen datos disponibles.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Se agregó un selector de períodos de 7, 30 y 90 días para facilitar distintos niveles de análisis. Como mejora adicional, y aprovechando que el desarrollo quedó dentro del tiempo disponible, se incorporó un selector de idioma Español/Inglés. Esta decisión se tomó para evitar mezclar términos en la interfaz y hacer que el dashboard sea más claro para distintos usuarios.
 
-### `npm test`
+## Segunda iteración
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para una segunda iteración dejaría mejoras orientadas a mayor profundidad de análisis y a una mejor organización del código. Primero, separaría la aplicación en más componentes reutilizables, por ejemplo tarjetas KPI, panel de prioridades, gráficos, controles y resumen ejecutivo. Esto permitiría que el proyecto quede más ordenado y sea más fácil de mantener.
 
-### `npm run build`
+También agregaría una vista de detalle por métrica, donde el usuario pueda seleccionar un indicador específico y revisar su evolución con más información. La versión actual está pensada para una lectura ejecutiva rápida, pero una vista de detalle ayudaría a investigar mejor la causa de cada alerta.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Otra mejora sería permitir filtros por fechas personalizadas, además de los períodos fijos de 7, 30 y 90 días. Esto daría mayor flexibilidad para analizar semanas, meses o rangos concretos según la necesidad del jefe de ventas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Finalmente, agregaría una tabla resumen descargable o exportable, junto con una explicación más detallada de las alertas generadas. Esto permitiría usar el dashboard no solo como visualización diaria, sino también como apoyo para reuniones o seguimiento comercial.
