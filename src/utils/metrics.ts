@@ -63,33 +63,52 @@ export function calculateSummary(days: DayRecord[]): PeriodSummary {
   };
 }
 
-export function formatNumber(value: number | null): string {
-  if (value === null || Number.isNaN(value)) return "Sin datos";
+export function formatNumber(
+  value: number | null,
+  locale = "es-CL",
+  emptyText = "Sin datos"
+): string {
+  if (value === null || Number.isNaN(value)) return emptyText;
 
-  return new Intl.NumberFormat("es-CL", {
+  return new Intl.NumberFormat(locale, {
     maximumFractionDigits: 1,
   }).format(value);
 }
 
-export function formatPercent(value: number | null): string {
-  if (value === null || Number.isNaN(value)) return "Sin datos";
+export function formatPercent(
+  value: number | null,
+  locale = "es-CL",
+  emptyText = "Sin datos"
+): string {
+  if (value === null || Number.isNaN(value)) return emptyText;
 
-  return new Intl.NumberFormat("es-CL", {
+  return new Intl.NumberFormat(locale, {
     style: "percent",
     maximumFractionDigits: 1,
   }).format(value);
 }
 
-export function calculateChange(current: number | null, previous: number | null): number | null {
+export function calculateChange(
+  current: number | null,
+  previous: number | null
+): number | null {
   if (current === null || previous === null || previous === 0) return null;
 
   return (current - previous) / Math.abs(previous);
 }
 
-export function formatChange(value: number | null): string {
-  if (value === null || Number.isNaN(value)) return "Sin comparación";
+export function formatChange(
+  value: number | null,
+  emptyText = "Sin comparación",
+  locale = "es-CL"
+): string {
+  if (value === null || Number.isNaN(value)) return emptyText;
+
+  const formatted = new Intl.NumberFormat(locale, {
+    maximumFractionDigits: 1,
+  }).format(value * 100);
 
   const sign = value > 0 ? "+" : "";
 
-  return `${sign}${(value * 100).toFixed(1)}%`;
+  return `${sign}${formatted}%`;
 }
