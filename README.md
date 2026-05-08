@@ -14,6 +14,17 @@ Para interpretar correctamente los indicadores se utilizó el campo `direction` 
 
 Se agregó selección de períodos de 7, 30 y 90 días para entregar una lectura rápida según el nivel de análisis requerido. Como mejora adicional, y aprovechando que el desarrollo quedó dentro del tiempo disponible, se incorporó un selector de idioma Español/Inglés. Esta decisión se tomó para evitar mezclar términos en la interfaz y hacer que el dashboard sea más claro para distintos usuarios.
 
+Para correr el proyecto localmente, se debe clonar el repositorio, instalar las dependencias y levantar la aplicación con npm:
+
+```bash
+git clone https://github.com/Pujoltinki/examen-react.git
+cd examen-react
+npm install
+npm start
+```
+
+La aplicación se abrirá en `http://localhost:3000`. El archivo `metrics.json` debe mantenerse dentro de la carpeta `public`, ya que desde ahí es cargado por la aplicación.
+
 ## Segunda iteración
 
 Para una segunda iteración dejaría mejoras orientadas a mayor profundidad de análisis y mejor mantenimiento del código. Primero, separaría la aplicación en más componentes reutilizables, por ejemplo tarjetas KPI, panel de prioridades, gráficos, controles y resumen ejecutivo. Esto permitiría que el proyecto quede más ordenado y sea más fácil de modificar.
